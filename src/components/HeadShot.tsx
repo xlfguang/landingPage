@@ -5,6 +5,7 @@ import Rectangle2 from "../assets/HeadShot/Rectangle2.png";
 import Rectangle3 from "../assets/HeadShot/Rectangle3.png";
 import Rectangle4 from "../assets/HeadShot/Rectangle4.png";
 import Rectangle5 from "../assets/HeadShot/Rectangle5.png";
+import MagicWand from "../assets/img/MagicWand.png";
 const Section = styled.section`
   padding: 80px 0px;
   background-color: #edf0fa;
@@ -70,8 +71,6 @@ const ArrowIcon = styled.img`
 
 const RightContent = styled.div`
   flex: 1;
-  display: flex;
-  flex-direction: column;
 `;
 
 const SectionTitle = styled.h2`
@@ -94,26 +93,19 @@ const SectionDescription = styled.p`
 `;
 
 const CTAButton = styled.button`
+  padding: 12px 16px;
+  background: linear-gradient(268.49deg, #367cff 0%, #8d67ff 100%);
+  font-family: Poppins;
+  font-weight: 500;
+  font-size: 16px;
+  color: #ffffff;
+  border-radius: 38px;
+  border: none;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 16px 32px;
-  background: linear-gradient(90deg, #9f7aea 0%, #6b8afd 100%);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  font-family: Poppins, sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 16px rgba(159, 122, 234, 0.3);
-  width: fit-content;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(159, 122, 234, 0.4);
-  }
+  gap: 8px;
+  margin-bottom: 40px;
 `;
 
 const StarIcon = styled.span`
@@ -159,7 +151,7 @@ export const HeadShot = () => {
             traditional photoshoots, presenting a perfect image.
           </SectionDescription>
           <CTAButton>
-            <StarIcon>✦</StarIcon>
+            <StarIcon src={MagicWand} alt="Magic Wand" />
             <span>Create Professional Headshot</span>
           </CTAButton>
           <ExampleCardsContainer>

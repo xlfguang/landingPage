@@ -1,5 +1,9 @@
 import styled from "styled-components";
 import phoneBg from "../assets/img/phonebg.png";
+import ImgLike from "../assets/img/Like.png";
+import ImgLove from "../assets/img/Love.gif";
+import ImgPlay from "../assets/img/play.png";
+import MagicWand from "../assets/img/MagicWand.png";
 const Section = styled.section`
   padding: 80px 0px;
   background-color: #edf0fa;
@@ -17,51 +21,59 @@ const SectionContent = styled.div`
 `;
 
 const SectionTitle = styled.h2`
-  font-family: Playfair Display, serif;
-  font-size: 60px;
+  font-family: Playfair Display;
   font-weight: 400;
-  color: #2d2d2d;
-  margin-bottom: 16px;
+  font-style: Regular;
+  font-size: 60px;
+  line-height: 72px;
+  letter-spacing: 0%;
   text-align: center;
+  vertical-align: middle;
+  margin-bottom: 12px;
+  color: #141414;
 `;
 
 const SectionDescription = styled.p`
-  font-family: Poppins, sans-serif;
-  font-size: 18px;
+  font-family: Poppins;
   font-weight: 400;
-  color: #666666;
-  margin-bottom: 32px;
+  font-style: Regular;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: 0%;
   text-align: center;
-  max-width: 700px;
-  line-height: 1.6;
+  vertical-align: middle;
+  color: #141414;
+  width: 670px;
+  height: 72px;
+  line-height: 36px;
+  text-align: center;
+  vertical-align: middle;
+  color: #141414;
+  width: 670px;
+  height: 72px;
+  line-height: 36px;
+  margin-bottom: 12px;
 `;
 
 const CTAButton = styled.button`
+  padding: 12px 16px;
+  background: linear-gradient(268.49deg, #367cff 0%, #8d67ff 100%);
+  font-family: Poppins;
+  font-weight: 500;
+  font-size: 16px;
+  color: #ffffff;
+  border-radius: 38px;
+  border: none;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 16px 32px;
-  background: linear-gradient(90deg, #9f7aea 0%, #6b8afd 100%);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  font-family: Poppins, sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 16px rgba(159, 122, 234, 0.3);
-  margin-bottom: 48px;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(159, 122, 234, 0.4);
-  }
+  gap: 8px;
+  margin-bottom: 40px;
 `;
 
-const StarIcon = styled.span`
-  font-size: 20px;
-  line-height: 1;
+const StarIcon = styled.img`
+  width: 20px;
+  height: 20px;
 `;
 
 const CardsContainer = styled.div`
@@ -73,8 +85,8 @@ const CardsContainer = styled.div`
 `;
 
 const VideoCard = styled.div`
-  width: 240px;
-  height: 400px;
+  width: 248px;
+  height: 440px;
   border-radius: 24px;
   overflow: hidden;
   position: relative;
@@ -98,41 +110,42 @@ const CardImage = styled.img`
 const PlayButton = styled.div`
   position: absolute;
   bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 48px;
-  height: 48px;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 50%;
+  left: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 60px;
+  height: 60px;
+  border: 2px solid #ffffff52;
+  border-radius: 50%;
+  background: #00000066;
+`;
+const PlayIcon = styled.img`
+  width: 22px;
+  height: 26px;
+  transform: translate(10%, 0%);
+`;
+const LikeButton = styled.img`
+  position: absolute;
+  width: 66px;
+  height: 66px;
+  bottom: 55px;
+  right: 25px;
   z-index: 10;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-
-  &::before {
-    content: "";
-    width: 0;
-    height: 0;
-    border-left: 14px solid #333;
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-    margin-left: 4px;
-  }
+`;
+const LoveGif = styled.img`
+  width: 376px;
+  height: 376px;
+  position: absolute;
+  bottom: 55px;
+  right: -115px;
+  z-index: 10;
 `;
 
 const PhoneFrame = styled.div`
-  width: 360px;
-  height: 640px;
+  width: 356px;
+  height: 568px;
   position: relative;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  cursor: pointer;
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
-  }
 `;
 
 const PhoneBg = styled.img`
@@ -150,9 +163,9 @@ const PhoneScreen = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 280px;
-  height: 500px;
-  border-radius: 20px;
+  width: 290px;
+  height: 540px;
+  border-radius: 35px;
   overflow: hidden;
   background: #000000;
   z-index: 2;
@@ -165,32 +178,6 @@ const PhoneImage = styled.img`
   filter: blur(2px);
 `;
 
-const PhonePlayButton = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 56px;
-  height: 56px;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-
-  &::before {
-    content: "";
-    width: 0;
-    height: 0;
-    border-left: 16px solid #333;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    margin-left: 4px;
-  }
-`;
-
 export const Shorts = () => {
   return (
     <Section>
@@ -201,8 +188,8 @@ export const Shorts = () => {
           easily attract attention.
         </SectionDescription>
         <CTAButton>
-          <StarIcon>✦</StarIcon>
-          <span>Create Short Videos Now</span>
+          <StarIcon src={MagicWand} alt="Magic Wand" />
+          Create Short Videos Now
         </CTAButton>
         <CardsContainer>
           <VideoCard>
@@ -210,7 +197,9 @@ export const Shorts = () => {
               src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&q=80"
               alt="Short video 1"
             />
-            <PlayButton />
+            <PlayButton>
+              <PlayIcon src={ImgPlay} alt="Play" />
+            </PlayButton>
           </VideoCard>
           <PhoneFrame>
             <PhoneBg src={phoneBg} alt="Phone frame" />
@@ -219,15 +208,18 @@ export const Shorts = () => {
                 src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=80"
                 alt="Short video center"
               />
-              <PhonePlayButton />
             </PhoneScreen>
+            <LikeButton src={ImgLike} alt="Like" />
+            <LoveGif src={ImgLove} alt="Love" />
           </PhoneFrame>
           <VideoCard>
             <CardImage
               src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&q=80"
               alt="Short video 2"
             />
-            <PlayButton />
+            <PlayButton>
+              <PlayIcon src={ImgPlay} alt="Play" />
+            </PlayButton>
           </VideoCard>
         </CardsContainer>
       </SectionContent>

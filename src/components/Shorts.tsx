@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-
+import styled from "styled-components";
+import phoneBg from "../assets/img/phonebg.png";
 const Section = styled.section`
   padding: 80px 48px;
-  background-color: #f5f0f8;
+  background: linear-gradient(180deg, #f5f0f8 0%, #e8d5f0 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,21 +11,29 @@ const Section = styled.section`
 const SectionContent = styled.div`
   max-width: 1440px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 56px;
-  font-weight: 700;
+  font-family: Playfair Display, serif;
+  font-size: 60px;
+  font-weight: 400;
   color: #2d2d2d;
   margin-bottom: 16px;
-  font-family: 'Georgia', serif;
+  text-align: center;
 `;
 
 const SectionDescription = styled.p`
+  font-family: Poppins, sans-serif;
   font-size: 18px;
-  color: #666;
-  margin-bottom: 48px;
-  max-width: 600px;
+  font-weight: 400;
+  color: #666666;
+  margin-bottom: 32px;
+  text-align: center;
+  max-width: 700px;
+  line-height: 1.6;
 `;
 
 const CTAButton = styled.button`
@@ -33,45 +41,46 @@ const CTAButton = styled.button`
   align-items: center;
   gap: 10px;
   padding: 16px 32px;
-  background: linear-gradient(135deg, #b794d4 0%, #9b7bb8 100%);
+  background: linear-gradient(90deg, #9f7aea 0%, #6b8afd 100%);
   color: white;
-  border-radius: 14px;
+  border: none;
+  border-radius: 12px;
+  font-family: Poppins, sans-serif;
   font-size: 18px;
   font-weight: 600;
+  cursor: pointer;
   transition: all 0.3s ease;
-  margin: 0 auto 48px;
-  display: block;
+  box-shadow: 0 4px 16px rgba(159, 122, 234, 0.3);
+  margin-bottom: 48px;
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(183, 148, 212, 0.4);
+    box-shadow: 0 8px 24px rgba(159, 122, 234, 0.4);
   }
+`;
 
-  &::before {
-    content: '⭐';
-    font-size: 20px;
-  }
+const StarIcon = styled.span`
+  font-size: 20px;
+  line-height: 1;
 `;
 
 const CardsContainer = styled.div`
   display: flex;
-  gap: 32px;
+  gap: 24px;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
 `;
 
-const Card = styled.div<{ $isPhone?: boolean }>`
-  width: ${props => props.$isPhone ? '280px' : '320px'};
-  height: ${props => props.$isPhone ? '500px' : '570px'};
-  border-radius: ${props => props.$isPhone ? '24px' : '16px'};
+const VideoCard = styled.div`
+  width: 240px;
+  height: 400px;
+  border-radius: 24px;
   overflow: hidden;
   position: relative;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  background: ${props => props.$isPhone ? '#000' : 'transparent'};
-  padding: ${props => props.$isPhone ? '8px' : '0'};
-  transition: transform 0.3s ease;
   cursor: pointer;
+  transition: transform 0.3s ease;
 
   &:hover {
     transform: translateY(-4px);
@@ -79,91 +88,106 @@ const Card = styled.div<{ $isPhone?: boolean }>`
   }
 `;
 
-const PhoneFrame = styled.div`
+const CardImage = styled.img`
   width: 100%;
   height: 100%;
-  border-radius: 20px;
-  overflow: hidden;
-  position: relative;
-  background: #000;
-`;
-
-const CardImage = styled.div<{ $bgImage?: string }>`
-  width: 100%;
-  height: 100%;
-  background-image: ${props => props.$bgImage ? `url(${props.$bgImage})` : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'};
-  background-size: cover;
-  background-position: center;
-  position: relative;
+  object-fit: cover;
+  filter: blur(2px);
 `;
 
 const PlayButton = styled.div`
   position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+  &::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 14px solid #333;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    margin-left: 4px;
+  }
+`;
+
+const PhoneFrame = styled.div`
+  width: 360px;
+  height: 640px;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  }
+`;
+
+const PhoneBg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+`;
+
+const PhoneScreen = styled.div`
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 60px;
-  height: 60px;
-  background: rgba(255, 255, 255, 0.9);
+  width: 280px;
+  height: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #000000;
+  z-index: 2;
+`;
+
+const PhoneImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(2px);
+`;
+
+const PhonePlayButton = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
   z-index: 10;
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 
   &::before {
-    content: '▶';
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 16px solid #333;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
     margin-left: 4px;
-  }
-
-  ${Card}:hover & {
-    background: rgba(255, 255, 255, 1);
-    transform: translate(-50%, -50%) scale(1.1);
-  }
-`;
-
-const SocialIcons = styled.div`
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  z-index: 10;
-`;
-
-const Icon = styled.div`
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  animation: float 2s ease-in-out infinite;
-
-  &:nth-child(1) {
-    animation-delay: 0s;
-  }
-
-  &:nth-child(2) {
-    animation-delay: 0.5s;
-  }
-
-  &:nth-child(3) {
-    animation-delay: 1s;
-  }
-
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
   }
 `;
 
@@ -173,31 +197,40 @@ export const Shorts = () => {
       <SectionContent>
         <SectionTitle>Shorts</SectionTitle>
         <SectionDescription>
-          Quickly generate stunning short videos to boost brand promotion and easily attract attention.
+          Quickly generate stunning short videos to boost brand promotion and
+          easily attract attention.
         </SectionDescription>
-        <CTAButton>Create Short Videos Now</CTAButton>
+        <CTAButton>
+          <StarIcon>✦</StarIcon>
+          <span>Create Short Videos Now</span>
+        </CTAButton>
         <CardsContainer>
-          <Card>
-            <CardImage $bgImage="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&q=80" />
+          <VideoCard>
+            <CardImage
+              src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&q=80"
+              alt="Short video 1"
+            />
             <PlayButton />
-          </Card>
-          <Card $isPhone>
-            <PhoneFrame>
-              <CardImage $bgImage="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=80" />
-              <SocialIcons>
-                <Icon>❤️</Icon>
-                <Icon>👍</Icon>
-                <Icon>⭐</Icon>
-              </SocialIcons>
-            </PhoneFrame>
-          </Card>
-          <Card>
-            <CardImage $bgImage="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&q=80" />
+          </VideoCard>
+          <PhoneFrame>
+            <PhoneBg src={phoneBg} alt="Phone frame" />
+            <PhoneScreen>
+              <PhoneImage
+                src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=80"
+                alt="Short video center"
+              />
+              <PhonePlayButton />
+            </PhoneScreen>
+          </PhoneFrame>
+          <VideoCard>
+            <CardImage
+              src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&q=80"
+              alt="Short video 2"
+            />
             <PlayButton />
-          </Card>
+          </VideoCard>
         </CardsContainer>
       </SectionContent>
     </Section>
   );
 };
-

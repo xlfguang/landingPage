@@ -1,12 +1,13 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import footerLogo from "../assets/img/footerLogo.png";
 
 const FooterContainer = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 48px;
-  background-color: #ffffff;
-  border-top: 1px solid #e0e0e0;
+  height: 61px;
+  padding: 0 48px;
+  background-color: #000000;
 `;
 
 const FooterContent = styled.div`
@@ -17,44 +18,30 @@ const FooterContent = styled.div`
   align-items: center;
 `;
 
-const Logo = styled.div`
-  font-size: 24px;
-  font-weight: 700;
-  color: #333;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  &::before {
-    content: 'R';
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border-radius: 8px;
-    font-weight: 700;
-  }
+const Logo = styled.img`
+  width: 142px;
+  height: 39px;
+  object-fit: contain;
 `;
 
 const Copyright = styled.div`
+  font-family: Poppins, sans-serif;
   font-size: 14px;
-  color: #666;
-  text-align: right;
+  font-weight: 400;
+  color: #999999;
+  text-align: center;
+  flex: 1;
 `;
 
 export const Footer = () => {
   return (
     <FooterContainer>
       <FooterContent>
-        <Logo>Rise Video</Logo>
+        <Logo src={footerLogo} alt="Rise Video" />
         <Copyright>
-          © 2025 ClipN is a QGALAI INC. product. All rights reserved.
+          © 2025 ClipN is a QQAI.AI INC. product. All rights reserved.
         </Copyright>
       </FooterContent>
     </FooterContainer>
   );
 };
-

@@ -1,8 +1,13 @@
-import styled from 'styled-components';
-
+import styled from "styled-components";
+import arrowImg from "../assets/img/arrow2.png";
+import Rectangle1 from "../assets/HeadShot/Rectangle1.png";
+import Rectangle2 from "../assets/HeadShot/Rectangle2.png";
+import Rectangle3 from "../assets/HeadShot/Rectangle3.png";
+import Rectangle4 from "../assets/HeadShot/Rectangle4.png";
+import Rectangle5 from "../assets/HeadShot/Rectangle5.png";
 const Section = styled.section`
   padding: 80px 48px;
-  background-color: #ffffff;
+  background-color: #f0f0f9;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,65 +16,81 @@ const Section = styled.section`
 const SectionContent = styled.div`
   max-width: 1440px;
   width: 100%;
-`;
-
-const SectionTitle = styled.h2`
-  font-size: 56px;
-  font-weight: 700;
-  color: #2d2d2d;
-  margin-bottom: 16px;
-  font-family: 'Georgia', serif;
-`;
-
-const SectionDescription = styled.p`
-  font-size: 18px;
-  color: #666;
-  margin-bottom: 48px;
-  max-width: 600px;
-`;
-
-const CardsContainer = styled.div`
   display: flex;
-  gap: 24px;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 48px;
-  flex-wrap: wrap;
-`;
+  gap: 60px;
+  align-items: flex-start;
 
-const Card = styled.div<{ $size?: 'small' | 'large' }>`
-  width: ${props => props.$size === 'large' ? '280px' : '200px'};
-  height: ${props => props.$size === 'large' ? '350px' : '250px'};
-  border-radius: 16px;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-  cursor: pointer;
-
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    gap: 40px;
   }
 `;
 
-const CardImage = styled.div<{ $bgImage?: string }>`
-  width: 100%;
-  height: 100%;
-  background-image: ${props => props.$bgImage ? `url(${props.$bgImage})` : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'};
-  background-size: cover;
-  background-position: center;
+const LeftContent = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: center;
 `;
 
-const Arrow = styled.div`
-  font-size: 32px;
-  color: #667eea;
-  font-weight: bold;
+const BeforeAfterCard = styled.div`
+  width: 623px;
+  height: 592px;
+  border-radius: 27px;
+  background-color: #e1e4f1;
+  position: relative;
+`;
+
+const BeforeHeadshotImage = styled.img`
+  position: absolute;
+  width: 209px;
+  height: 374px;
+  bottom: 23px;
+  left: 36px;
+  border-radius: 24px;
+  border: 1px solid #000;
+`;
+
+const AfterHeadshotImage = styled.img`
+  position: absolute;
+  width: 300px;
+  height: 533px;
+  top: 36px;
+  right: 36px;
+  border-radius: 24px;
+  border: 1px solid #000;
+`;
+const ArrowIcon = styled.img`
+  width: 160px;
+  height: 160px;
+  position: absolute;
+  top: 44px;
+  left: 123px;
+  transform: rotate(-8.26deg);
+`;
+
+const RightContent = styled.div`
+  flex: 1;
   display: flex;
-  align-items: center;
-  transform: rotate(-45deg);
-  margin: 0 -10px;
-  z-index: 10;
+  flex-direction: column;
+`;
+
+const SectionTitle = styled.h2`
+  font-family: Poppins, sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #2d2d2d;
+  margin-bottom: 24px;
+  line-height: 1.2;
+`;
+
+const SectionDescription = styled.p`
+  font-family: Poppins, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #666666;
+  margin-bottom: 32px;
+  line-height: 1.6;
+  max-width: 500px;
 `;
 
 const CTAButton = styled.button`
@@ -77,55 +98,83 @@ const CTAButton = styled.button`
   align-items: center;
   gap: 10px;
   padding: 16px 32px;
-  background: linear-gradient(135deg, #b794d4 0%, #9b7bb8 100%);
+  background: linear-gradient(90deg, #9f7aea 0%, #6b8afd 100%);
   color: white;
-  border-radius: 14px;
+  border: none;
+  border-radius: 12px;
+  font-family: Poppins, sans-serif;
   font-size: 18px;
   font-weight: 600;
+  cursor: pointer;
   transition: all 0.3s ease;
-  margin: 0 auto;
-  display: block;
+  box-shadow: 0 4px 16px rgba(159, 122, 234, 0.3);
+  width: fit-content;
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(183, 148, 212, 0.4);
+    box-shadow: 0 8px 24px rgba(159, 122, 234, 0.4);
   }
+`;
 
-  &::before {
-    content: '⭐';
-    font-size: 20px;
-  }
+const StarIcon = styled.span`
+  font-size: 20px;
+  line-height: 1;
+`;
+
+const ExampleCardsContainer = styled.div`
+  display: flex;
+  gap: 16px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+`;
+
+const ExampleCard = styled.div`
+  width: 152px;
+  height: 270px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+`;
+
+const ExampleImage = styled.img`
+  width: 100%;
+  height: 100%;
 `;
 
 export const HeadShot = () => {
   return (
     <Section>
       <SectionContent>
-        <SectionTitle>HeadShot</SectionTitle>
-        <SectionDescription>
-          Quickly create professional headshots without the hassle of traditional photoshoots, presenting a perfect image.
-        </SectionDescription>
-        <CardsContainer>
-          <Card $size="small">
-            <CardImage $bgImage="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" />
-          </Card>
-          <Arrow>→</Arrow>
-          <Card $size="large">
-            <CardImage $bgImage="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80" />
-          </Card>
-          <Card $size="small">
-            <CardImage $bgImage="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80" />
-          </Card>
-          <Card $size="small">
-            <CardImage $bgImage="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" />
-          </Card>
-          <Card $size="small">
-            <CardImage $bgImage="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80" />
-          </Card>
-        </CardsContainer>
-        <CTAButton>Create Professional Headshot</CTAButton>
+        <LeftContent>
+          <BeforeAfterCard>
+            <BeforeHeadshotImage src={Rectangle1} alt="Before headshot" />
+            <ArrowIcon src={arrowImg} alt="arrow" />
+            <AfterHeadshotImage src={Rectangle2} alt="After headshot" />
+          </BeforeAfterCard>
+        </LeftContent>
+        <RightContent>
+          <SectionTitle>HeadShot</SectionTitle>
+          <SectionDescription>
+            Quickly create professional headshots without the hassle of
+            traditional photoshoots, presenting a perfect image.
+          </SectionDescription>
+          <CTAButton>
+            <StarIcon>✦</StarIcon>
+            <span>Create Professional Headshot</span>
+          </CTAButton>
+          <ExampleCardsContainer>
+            <ExampleCard>
+              <ExampleImage src={Rectangle3} alt="Example headshot 1" />
+            </ExampleCard>
+            <ExampleCard>
+              <ExampleImage src={Rectangle4} alt="Example headshot 2" />
+            </ExampleCard>
+            <ExampleCard>
+              <ExampleImage src={Rectangle5} alt="Example headshot 3" />
+            </ExampleCard>
+          </ExampleCardsContainer>
+        </RightContent>
       </SectionContent>
     </Section>
   );
 };
-

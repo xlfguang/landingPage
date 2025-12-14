@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import React from "react";
+import styled, { createGlobalStyle } from "styled-components";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -83,7 +84,6 @@ const CardsContainer = styled.div`
   }
 
   .slick-list {
-    padding: 40px 0 !important;
     overflow: visible;
   }
 
@@ -95,39 +95,81 @@ const CardsContainer = styled.div`
 
   .slick-slide {
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 0 12px; /* 24px 间距，左右各 12px */
+    margin: 0 12px; /* 每个卡片左右各12px，总共24px间距 */
+    box-sizing: border-box;
+    width: auto !important; /* 让 slide 宽度自适应内容 */
 
     /* 中间的激活卡片 */
-    &.slick-center {
+    &.slick-center,
+    &.slick-current {
       z-index: 2;
       opacity: 1;
-
-      & > div {
-        width: 300px;
-        height: 533px;
-      }
     }
 
     /* 所有非激活卡片 */
-    &:not(.slick-center) {
+    &:not(.slick-center):not(.slick-current) {
       opacity: 0.7;
-
-      & > div {
-        width: 243px;
-        height: 431px;
-      }
     }
   }
 `;
 
-const Card = styled.div<{ isActive: boolean }>`
-  width: 243px;
-  height: 431px;
+const Card = styled.div.attrs({ className: "house-tour-card" })<{
+  isActive: boolean;
+}>`
+  width: ${({ isActive }) => (isActive ? "300px" : "243px")};
+  height: ${({ isActive }) => (isActive ? "533px" : "431px")};
   border-radius: 19px;
   overflow: hidden;
   position: relative;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   margin: 0 auto;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  flex-grow: 0;
+`;
+
+// 全局样式，确保活跃卡片尺寸正确
+const GlobalSliderStyles = createGlobalStyle`
+  /* 活跃卡片样式 */
+  .slick-slide.slick-center > div.house-tour-card,
+  .slick-slide.slick-center .house-tour-card,
+  .slick-slide.slick-center > div,
+  .slick-slide.slick-center div[class*="house-tour-card"] {
+    width: 300px !important;
+    height: 533px !important;
+    max-width: 300px !important;
+    min-width: 300px !important;
+    box-sizing: border-box !important;
+    flex-shrink: 0 !important;
+    flex-grow: 0 !important;
+  }
+  
+  /* 非活跃卡片样式 */
+  .slick-slide:not(.slick-center) > div.house-tour-card,
+  .slick-slide:not(.slick-center) .house-tour-card,
+  .slick-slide:not(.slick-center) > div,
+  .slick-slide:not(.slick-center) div[class*="house-tour-card"] {
+    width: 243px !important;
+    height: 431px !important;
+    max-width: 243px !important;
+    min-width: 243px !important;
+    box-sizing: border-box !important;
+    flex-shrink: 0 !important;
+    flex-grow: 0 !important;
+  }
+  
+  /* 确保 slick-slide 本身不会限制宽度 */
+  .slick-slide.slick-center {
+    width: auto !important;
+    max-width: none !important;
+    min-width: auto !important;
+  }
+  
+  .slick-slide:not(.slick-center) {
+    width: auto !important;
+    max-width: none !important;
+    min-width: auto !important;
+  }
 `;
 
 const CardImage = styled.img`
@@ -171,7 +213,8 @@ const UseItBtn = styled.button<{ isActive: boolean }>`
 
 // 通过 CSS 控制中间卡片显示按钮
 const StyledSliderContainer = styled(CardsContainer)`
-  .slick-slide.slick-center .use-it-btn {
+  .slick-slide.slick-center .use-it-btn,
+  .slick-slide.slick-current .use-it-btn {
     display: flex !important;
   }
 `;
@@ -193,6 +236,8 @@ const UseItBtnIcon = styled.img`
 
 // 主组件
 export const HouseTour = () => {
+  const [currentSlide, setCurrentSlide] = React.useState(0);
+
   const houseTourData = [
     {
       id: 1,
@@ -255,12 +300,17 @@ export const HouseTour = () => {
     centerMode: true,
     centerPadding: "0px",
     focusOnSelect: true,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    afterChange: (current: number) => setCurrentSlide(current),
     responsive: [
       {
         breakpoint: 1440,
         settings: {
           slidesToShow: 5,
           centerMode: true,
+          autoplay: true,
+          autoplaySpeed: 3000,
         },
       },
       {
@@ -268,6 +318,8 @@ export const HouseTour = () => {
         settings: {
           slidesToShow: 3,
           centerMode: true,
+          autoplay: true,
+          autoplaySpeed: 3000,
         },
       },
       {
@@ -275,6 +327,8 @@ export const HouseTour = () => {
         settings: {
           slidesToShow: 1,
           centerMode: true,
+          autoplay: true,
+          autoplaySpeed: 3000,
         },
       },
     ],
@@ -282,6 +336,7 @@ export const HouseTour = () => {
 
   return (
     <Section>
+      <GlobalSliderStyles />
       <SectionContent>
         <SectionTitle>House Tour</SectionTitle>
         <SectionDescription>
@@ -292,18 +347,17 @@ export const HouseTour = () => {
       <SliderContainer>
         <StyledSliderContainer>
           <Slider {...settings}>
-            {houseTourData.map((item) => {
+            {houseTourData.map((item, index) => {
+              const isActive = index === currentSlide;
               return (
-                <div key={item.id}>
-                  <Card isActive={false}>
-                    <CardImage src={item.img} />
-                    <CardVideo src={item.video} />
-                    <UseItBtn isActive={false} className="use-it-btn">
-                      <UseItBtnIcon src={magicWand2} />
-                      <UseItBtnText>Use It</UseItBtnText>
-                    </UseItBtn>
-                  </Card>
-                </div>
+                <Card key={item.id} isActive={isActive}>
+                  <CardImage src={item.img} />
+                  <CardVideo src={item.video} />
+                  <UseItBtn isActive={isActive} className="use-it-btn">
+                    <UseItBtnIcon src={magicWand2} />
+                    <UseItBtnText>Use It</UseItBtnText>
+                  </UseItBtn>
+                </Card>
               );
             })}
           </Slider>

@@ -27,8 +27,9 @@ import VideoHouseTour9 from "../assets/HouseTour/HouseTour9.mp4";
 import VideoHouseTour10 from "../assets/HouseTour/HouseTour10.mp4";
 
 const Section = styled.section`
-  padding: 80px 48px;
-  background-color: #ffffff;
+  padding: 80px 0px;
+  background-color: #edf0fa;
+
   display: flex;
   flex-direction: column;
   align-items: center;

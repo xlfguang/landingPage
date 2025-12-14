@@ -16,8 +16,8 @@ import before05 from "../assets/VirtualStaging/before05.jpg";
 import arrowImg from "../assets/img/arrow.png";
 
 const Section = styled.section`
-  padding: 80px 48px;
-  background: linear-gradient(to right, #f5f0f8 0%, #ffffff 100%);
+  padding: 80px 0px;
+  background-color: #edf0fa;
   display: flex;
   flex-direction: column;
   align-items: center;

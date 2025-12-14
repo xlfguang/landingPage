@@ -6,8 +6,8 @@ import Rectangle3 from "../assets/HeadShot/Rectangle3.png";
 import Rectangle4 from "../assets/HeadShot/Rectangle4.png";
 import Rectangle5 from "../assets/HeadShot/Rectangle5.png";
 const Section = styled.section`
-  padding: 80px 48px;
-  background-color: #f0f0f9;
+  padding: 80px 0px;
+  background-color: #edf0fa;
   display: flex;
   flex-direction: column;
   align-items: center;

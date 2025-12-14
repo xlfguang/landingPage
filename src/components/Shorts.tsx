@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import phoneBg from "../assets/img/phonebg.png";
 const Section = styled.section`
-  padding: 80px 48px;
-  background: linear-gradient(180deg, #f5f0f8 0%, #e8d5f0 100%);
+  padding: 80px 0px;
+  background-color: #edf0fa;
   display: flex;
   flex-direction: column;
   align-items: center;

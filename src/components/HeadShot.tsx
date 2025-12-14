@@ -212,7 +212,7 @@ const SectionDescription = styled.p`
   font-family: "Poppins", sans-serif;
   font-size: 18px;
   font-weight: 400;
-  color: #666666;
+  color: #141414;
   margin-bottom: 32px;
   line-height: 1.6;
   max-width: 500px;
@@ -376,7 +376,7 @@ export const HeadShot = () => {
           </SectionDescription>
           <CTAButton>
             <StarIcon src={MagicWand} alt="Magic Wand" />
-            <span>Start Virtual Staging Now</span>
+            <span>Create Professional Headshot</span>
           </CTAButton>
           {/* PC端：示例卡片在右侧按钮下方 */}
           <ExampleCardsDesktop>

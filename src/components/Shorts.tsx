@@ -480,7 +480,7 @@ export const Shorts = () => {
         </SectionDescription>
         <CTAButton>
           <StarIcon src={MagicWand} alt="Magic Wand" />
-          Start Virtual Staging Now
+          Create Short Videos Now
         </CTAButton>
         <CardsContainer>
           <VideoCard $position="left">

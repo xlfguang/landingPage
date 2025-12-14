@@ -80,7 +80,8 @@ const Title = styled.h2`
   line-height: 1.2;
   color: #141414;
   margin: 0 0 24px 0;
-
+  /* 不换行 */
+  white-space: nowrap;
   @media (max-width: 768px) {
     font-size: 32px;
     margin-bottom: 12px;
@@ -92,7 +93,7 @@ const Description = styled.p`
   font-size: 18px;
   font-weight: 400;
   line-height: 1.6;
-  color: #666;
+  color: #141414;
   margin: 0 0 40px 0;
 
   @media (max-width: 768px) {

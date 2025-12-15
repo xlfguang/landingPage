@@ -68,7 +68,7 @@ export const Footer = () => {
       <FooterContent>
         <Logo src={footerLogo} alt="Rise Video" />
         <Copyright>
-          © 2025 ClipN is a QQAI.AI INC. product. All rights reserved.
+          © 2025 RiseVideo is a QQAI.AI INC. product. All rights reserved.
         </Copyright>
       </FooterContent>
     </FooterContainer>
